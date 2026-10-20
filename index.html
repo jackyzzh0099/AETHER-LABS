@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AETHER LABS — The Team</title>
+<meta name="description" content="AETHER LABS — a research collective exploring artificial intelligence, information technology and the future of computing." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --white:  #ffffff;
+    --paper:  #f5f5f3;
+    --ink:    #141414;
+    --muted:  #6f6f6c;
+    --line:   #e3e3e0;
+    --red:    #e4032e;
+    --maxw:   1440px;
+    --pad:    clamp(20px, 4vw, 56px);
+    --font:   "Inter", "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+    --ease:   cubic-bezier(.2,.8,.2,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
+  #home, #philosophy, #team, #contact { scroll-margin-top: 160px; }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- top bar ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.86);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    font-weight: 800;
+    font-size: 1.02rem;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .brand .dot {
+    width: 9px; height: 9px;
+    background: var(--red);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 3.2s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(228,3,46,0.0); }
+    50%     { box-shadow: 0 0 0 5px rgba(228,3,46,0.12); }
+  }
+  nav {
+    display: flex;
+    gap: clamp(18px, 3vw, 44px);
+    align-items: center;
+  }
+  nav a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    position: relative;
+    padding: 4px 0;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1.5px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s var(--ease);
+  }
+  nav a:hover::after { transform: scaleX(1); }
+  .coords {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    padding-top: clamp(36px, 5vw, 72px);
+    padding-bottom: clamp(40px, 5vw, 72px);
+  }
+  .hero .kicker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: clamp(30px, 4vw, 54px);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+  }
+  .hero .kicker .left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero .kicker .rule {
+    width: 46px; height: 2px;
+    background: var(--red);
+  }
+  .hero .kicker .right {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* 12-col grid for the title row */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+    align-items: stretch;
+  }
+  .hero-title {
+    grid-column: 1 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-title h1 {
+    font-size: clamp(3rem, 13vw, 100rem);
+    line-height: 0.84;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .hero-title h1 .row { display: block; overflow: hidden; }
+  .hero-title h1 .thin { font-weight: 400; }
+  .hero-title h1 .red { color: var(--red); }
+
+  /* red circle sits in a bordered grid cell */
+  .hero-cell {
+    grid-column: 9 / 13;
+    border: 1px solid var(--line);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(180px, 24vw, 320px);
+    overflow: hidden;
+  }
+  .hero-cell .tag {
+    position: absolute;
+    top: 14px; left: 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .hero-cell .tag b { color: var(--red); }
+  .circle {
+    width: clamp(120px, 17vw, 240px);
+    height: clamp(120px, 17vw, 240px);
+    border-radius: 50%;
+    background: var(--red);
+    position: relative;
+    animation: breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.06); }
+  }
+  .circle .orbit {
+    position: absolute;
+    inset: -14px;
+    animation: spin 14s linear infinite;
+  }
+  .circle .orbit::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 0;
+    width: 8px; height: 8px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* description + meta row */
+  .hero-sub {
+    margin-top: clamp(28px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+    align-items: end;
+  }
+  .hero-sub .desc {
+    grid-column: 1 / 8;
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+    line-height: 1.55;
+    max-width: 40ch;
+  }
+  .hero-sub .desc b { font-weight: 600; }
+  .hero-sub .meta {
+    grid-column: 8 / 13;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 1px solid var(--line);
+    padding-left: 22px;
+  }
+  .hero-sub .meta div { display: flex; justify-content: space-between; gap: 16px; }
+  .hero-sub .meta span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* ---------- disciplines marquee ---------- */
+  .strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 16px 0;
+  }
+  .marquee {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scroll 34s linear infinite;
+  }
+  .strip:hover .marquee { animation-play-state: paused; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  .marquee span {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .marquee .sep { color: var(--red); font-weight: 700; }
+
+  /* ---------- section head ---------- */
+  .sec-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding: clamp(56px, 8vw, 110px) 0 clamp(28px, 4vw, 44px);
+  }
+  .sec-head h2 {
+    font-size: clamp(2.2rem, 5.5vw, 4.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .sec-head .count {
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- manifesto ---------- */
+  .manifesto {
+    padding-top: clamp(64px, 8vw, 112px);
+    padding-bottom: clamp(64px, 8vw, 112px);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: clamp(24px, 3vw, 44px) clamp(16px, 2vw, 28px);
+    align-items: start;
+  }
+  .manifesto .m-statement {
+    grid-column: 1 / 9;
+    grid-row: 1;
+    font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+    line-height: 1.0;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+  .manifesto .m-statement .hl { color: var(--red); }
+  .manifesto .m-body {
+    grid-column: 9 / 13;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 1px solid var(--line);
+    padding-left: clamp(20px, 2vw, 32px);
+  }
+  .manifesto .m-body p {
+    font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .manifesto .m-body p.lead { color: var(--muted); }
+  .manifesto .m-body p.close {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 4px;
+  }
+  .manifesto .m-body p.close .hl { color: var(--red); }
+  .manifesto .m-square {
+    grid-column: 9 / 13;
+    grid-row: 2;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(140px, 18vw, 240px);
+    overflow: hidden;
+  }
+  .manifesto .m-square .sq {
+    width: clamp(72px, 9vw, 128px);
+    height: clamp(72px, 9vw, 128px);
+    background: var(--red);
+    animation: sqSpin 40s linear infinite;
+  }
+  @keyframes sqSpin { to { transform: rotate(360deg); } }
+
+  /* ---------- team grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .cell {
+    background: var(--white);
+    padding: clamp(22px, 2.4vw, 34px);
+    min-height: clamp(300px, 32vw, 400px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: background .4s ease;
+  }
+  .cell .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cell .idx {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .cell .sq {
+    width: 12px; height: 12px;
+    background: var(--red);
+    transition: transform .4s var(--ease);
+  }
+  .cell .name {
+    font-size: clamp(1.5rem, 2.4vw, 2.15rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-top: auto;
+  }
+  .cell .role {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .cell .bio {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 34ch;
+  }
+  .cell .tags {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cell .tags i {
+    font-style: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    color: var(--muted);
+  }
+  .cell .foot {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .cell .foot .arrow {
+    color: var(--ink);
+    font-size: 1rem;
+    transition: transform .35s ease, color .35s ease;
+  }
+  .cell:hover { background: var(--paper); }
+  .cell:hover .sq { transform: rotate(45deg); }
+  .cell:hover .arrow { transform: translateX(6px); color: var(--red); }
+
+  /* featured red cell — spans full width */
+  .cell.featured {
+    grid-column: 1 / -1;
+    background: var(--red);
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 4vw, 60px);
+    min-height: clamp(220px, 24vw, 300px);
+  }
+  .cell.featured .f-left { max-width: 46ch; }
+  .cell.featured .idx,
+  .cell.featured .role,
+  .cell.featured .foot { color: rgba(255,255,255,0.72); }
+  .cell.featured .sq { background: #fff; }
+  .cell.featured .name { font-size: clamp(2rem, 4vw, 3.4rem); margin-top: 0; }
+  .cell.featured .bio { color: rgba(255,255,255,0.9); max-width: 40ch; }
+  .cell.featured .tags i { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); }
+  .cell.featured .foot { border-top-color: rgba(255,255,255,0.35); margin-top: 0; padding-top: 0; }
+  .cell.featured .foot .arrow { color: #fff; }
+  .cell.featured:hover { background: #c90228; }
+  .cell.featured .f-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  .cell.featured .f-right .foot {
+    border: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  /* ---------- stats ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: clamp(56px, 8vw, 110px);
+  }
+  .stat {
+    background: var(--white);
+    padding: clamp(26px, 3vw, 44px) clamp(20px, 2vw, 30px);
+  }
+  .stat .num {
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .num .u { color: var(--red); }
+  .stat .cap {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    margin-top: clamp(64px, 9vw, 130px);
+    border-top: 1px solid var(--line);
+  }
+  .cta {
+    padding-top: clamp(56px, 8vw, 110px);
+    padding-bottom: clamp(40px, 5vw, 72px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .cta h3 {
+    font-size: clamp(3rem, 12vw, 11rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.85;
+    text-transform: uppercase;
+  }
+  .cta h3 a { position: relative; }
+  .cta h3 a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0.06em;
+    width: 100%; height: 0.09em;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s var(--ease);
+  }
+  .cta h3 a:hover::after { transform: scaleX(1); }
+  .cta .mail {
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .cta .mail span { color: var(--muted); display: block; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+
+  .foot-bar {
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    padding-bottom: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .foot-bar .socials { display: flex; gap: 22px; }
+  .foot-bar .socials a { position: relative; }
+  .foot-bar .socials a:hover { color: var(--ink); }
+  .foot-bar .socials a::after {
+    content: "";
+    position: absolute; left: 0; bottom: -3px;
+    width: 100%; height: 1px; background: var(--red);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .foot-bar .socials a:hover::after { transform: scaleX(1); }
+
+  /* ---------- reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in-view { opacity: 1; transform: none; }
+
+  /* hero load animation */
+  .hero-title h1 .row > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: riseIn 1s var(--ease) forwards;
+  }
+  .hero-title h1 .row:nth-child(1) > span { animation-delay: .05s; }
+  .hero-title h1 .row:nth-child(2) > span { animation-delay: .18s; }
+  @keyframes riseIn { to { transform: translateY(0); } }
+  .hero .kicker,
+  .hero-cell,
+  .hero-sub {
+    opacity: 0;
+    animation: fadeUp .9s var(--ease) forwards;
+  }
+  .hero .kicker { animation-delay: .0s; }
+  .hero-cell { animation-delay: .3s; }
+  .hero-sub { animation-delay: .45s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-title h1 .row > span { transform: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .coords { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-title { grid-column: 1 / -1; }
+    .hero-cell { grid-column: 1 / -1; min-height: 220px; }
+    .hero-sub { grid-template-columns: 1fr; }
+    .hero-sub .desc { grid-column: 1 / -1; }
+    .hero-sub .meta { grid-column: 1 / -1; border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 18px; }
+    .manifesto { grid-template-columns: 1fr; }
+    .manifesto .m-statement { grid-column: 1 / -1; grid-row: auto; }
+    .manifesto .m-body { grid-column: 1 / -1; grid-row: auto; border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 24px; }
+    .manifesto .m-square { grid-column: 1 / -1; grid-row: auto; min-height: 180px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .cell.featured { flex-direction: column; align-items: flex-start; }
+    .cell.featured .f-right { align-items: flex-start; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    nav { gap: 16px; }
+    nav a { font-size: 0.78rem; }
+    .grid { grid-template-columns: 1fr; }
+    .cell { min-height: 260px; }
+    .hero .kicker .right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header>
+    <div class="wrap bar">
+      <div class="brand"><span class="dot"></span>AETHER&nbsp;LABS</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="coords">UESTC &middot; 30.67&deg;N 104.10&deg;E</div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero wrap">
+    <div class="kicker">
+      <div class="left">
+        <span class="rule"></span>
+        <span class="label">Research Collective &mdash; Est. 2026</span>
+      </div>
+      <div class="right">Exploring the future of computing</div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-title">
+        <h1>
+          <span class="row"><span>AETHER</span></span>
+          <span class="row"><span class="thin">LABS</span><span class="red">.</span></span>
+        </h1>
+      </div>
+      <div class="hero-cell">
+        <span class="tag"><b>&#9679;</b> 07 &mdash; Members</span>
+        <div class="circle"><span class="orbit"></span></div>
+      </div>
+    </div>
+
+    <div class="hero-sub">
+      <p class="desc">A small, senior collective working at the frontier of <b>artificial intelligence, information technology and future computing</b>. We build from the metal up &mdash; and let the grid do the talking.</p>
+      <div class="meta">
+        <div><span class="label">Focus</span><span>AI &middot; Systems &middot; Security</span></div>
+        <div><span class="label">Stack</span><span>C &middot; ML &middot; Full-stack</span></div>
+        <div><span class="label">Status</span><span>Building 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DISCIPLINES MARQUEE ===== -->
+  <div class="strip">
+    <div class="marquee" id="marquee">
+      <span>Artificial Intelligence</span><span class="sep">&middot;</span>
+      <span>Low-Level Systems</span><span class="sep">&middot;</span>
+      <span>Cybersecurity</span><span class="sep">&middot;</span>
+      <span>Algorithms</span><span class="sep">&middot;</span>
+      <span>Number Theory</span><span class="sep">&middot;</span>
+      <span>Hardware</span><span class="sep">&middot;</span>
+      <span>Machine Learning</span><span class="sep">&middot;</span>
+      <span>Full-Stack</span><span class="sep">&middot;</span>
+      <span>Future Computing</span><span class="sep">&middot;</span>
+    </div>
+  </div>
+
+  <!-- ===== MANIFESTO ===== -->
+  <section id="philosophy" class="manifesto wrap reveal">
+    <div class="m-statement">Beyond<br>Boundaries.<br>Toward the<br><span class="hl">Unknown.</span></div>
+    <div class="m-body">
+      <p class="lead">At AETHER LABS, we believe innovation begins where convention ends. Driven by curiosity and guided by rigorous engineering, we transform ambitious ideas into meaningful technologies.</p>
+      <p>We bring together diverse perspectives, technical excellence, and a spirit of exploration to build solutions that shape what comes next.</p>
+      <p class="close">We do not simply adapt to the future. <span class="hl">We create it.</span></p>
+    </div>
+    <div class="m-square"><div class="sq"></div></div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section id="team" class="wrap">
+    <div class="sec-head reveal">
+      <h2>MEMBERS</h2>
+      <span class="count">07 &mdash; Members</span>
+    </div>
+
+    <div class="grid">
+      <!-- featured -->
+      <div class="cell featured reveal">
+        <div class="f-left">
+          <div class="top"><span class="idx">01</span></div>
+          <div class="name">Zhang Zhehao</div>
+          <div class="role">Systems &middot; Low-Level</div>
+          <p class="bio">Works at the metal. Builds the runtimes, schedulers and memory systems that everything else stands on &mdash; where C meets the architecture.</p>
+          <div class="tags"><i>C</i><i>Systems</i><i>Runtimes</i></div>
+        </div>
+        <div class="f-right">
+          <div class="foot"><span>Core</span><span class="arrow">&rarr;</span></div>
+        </div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">02</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Liu Hengyan</div>
+          <div class="role">Security &middot; Algorithms</div>
+          <p class="bio">Thinks in proofs and adversaries. Turns number theory into cryptography and hard problems into clean, provable algorithms.</p>
+          <div class="tags"><i>Security</i><i>Crypto</i><i>Number Theory</i></div>
+        </div>
+        <div class="foot"><span>Research</span><span class="arrow">&rarr;</span></div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">03</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Yang Muhan</div>
+          <div class="role">Frontend</div>
+          <p class="bio">Designs the surface where humans meet the machine &mdash; fast, precise interfaces that feel quietly inevitable.</p>
+          <div class="tags"><i>Frontend</i><i>UI</i><i>Motion</i></div>
+        </div>
+        <div class="foot"><span>Interface</span><span class="arrow">&rarr;</span></div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">04</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Yang Yucheng</div>
+          <div class="role">C &middot; Hardware</div>
+          <p class="bio">Speaks fluent silicon. Bridges the gap between the instruction set and the application, one cycle at a time.</p>
+          <div class="tags"><i>C</i><i>Hardware</i><i>Embedded</i></div>
+        </div>
+        <div class="foot"><span>Hardware</span><span class="arrow">&rarr;</span></div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">05</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Ji Qiuyu</div>
+          <div class="role">Art &middot; Machine Learning</div>
+          <p class="bio">Where aesthetics meet inference. Trains models that see, and builds the visual language to show what they learn.</p>
+          <div class="tags"><i>ML</i><i>Art</i><i>Vision</i></div>
+        </div>
+        <div class="foot"><span>ML / Art</span><span class="arrow">&rarr;</span></div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">06</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Huang Ziheng</div>
+          <div class="role">C &middot; Low-Level</div>
+          <p class="bio">Obsessed with the last 10%. Writes the fast, small, dependable code that never gets in the way.</p>
+          <div class="tags"><i>C</i><i>Systems</i><i>Performance</i></div>
+        </div>
+        <div class="foot"><span>Systems</span><span class="arrow">&rarr;</span></div>
+      </div>
+
+      <div class="cell reveal">
+        <div class="top"><span class="idx">07</span><span class="sq"></span></div>
+        <div>
+          <div class="name">Yu Weitao</div>
+          <div class="role">Backend</div>
+          <p class="bio">Keeps the machines honest at scale &mdash; APIs, data and the plumbing that never blinks.</p>
+          <div class="tags"><i>Backend</i><i>APIs</i><i>Infra</i></div>
+        </div>
+        <div class="foot"><span>Backend</span><span class="arrow">&rarr;</span></div>
+      </div>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats reveal">
+      <div class="stat"><div class="num" data-count="7">0</div><div class="cap">Members</div></div>
+      <div class="stat"><div class="num" data-count="6">0</div><div class="cap">Disciplines</div></div>
+      <div class="stat"><div class="num" data-count="3">0</div><div class="cap">Frontiers</div></div>
+      <div class="stat"><div class="num">2026<span class="u">&nbsp;</span></div><div class="cap">Building</div></div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contact">
+    <div class="wrap cta">
+      <h3><a href="mailto:zzh0099@qq.com">Let&rsquo;s<br>Talk</a></h3>
+      <div class="mail">
+        <span>Zhang Zhehao</span>
+        zzh0099@qq.com
+      </div>
+    </div>
+    <div class="wrap foot-bar">
+      <span>&copy; 2026 AETHER LABS</span>
+      <div class="socials">
+        <a href="#">UESTC</a>
+        <a href="#">X</a>
+        <a href="#">SISE</a>
+      </div>
+      <span>Set in Inter &middot; Swiss Grid</span>
+    </div>
+  </footer>
+
+<script>
+  // duplicate marquee content for a seamless loop
+  (function () {
+    var m = document.getElementById('marquee');
+    if (m) m.innerHTML += m.innerHTML;
+  })();
+
+  // scroll reveal
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // count-up numbers
+  (function () {
+    var nums = document.querySelectorAll('.num[data-count]');
+    if (!('IntersectionObserver' in window)) {
+      nums.forEach(function (n) { n.textContent = n.getAttribute('data-count'); });
+      return;
+    }
+    function animate(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var start = null, dur = 1200;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    nums.forEach(function (n) { io.observe(n); });
+  })();
+</script>
+
+</body>
+</html>
