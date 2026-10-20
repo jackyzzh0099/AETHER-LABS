@@ -190,7 +190,7 @@
   }
   .hero-cell .tag {
     position: absolute;
-    top: 14px; left: 16px;
+    bottom: 14px; left: 16px;
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -198,32 +198,52 @@
     font-weight: 600;
   }
   .hero-cell .tag b { color: var(--red); }
+  /* ---------- 2D top-down solar system ---------- */
   .circle {
-    width: clamp(120px, 17vw, 240px);
-    height: clamp(120px, 17vw, 240px);
+    width: clamp(140px, 20vw, 280px);
+    height: clamp(140px, 20vw, 280px);
+    position: relative;
+  }
+  .solar {
+    position: absolute;
+    inset: 0;
+  }
+  /* central sun — solid red */
+  .solar .sun {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 16%; height: 16%;
+    margin: -8% 0 0 -8%;
     border-radius: 50%;
     background: var(--red);
-    position: relative;
-    animation: breathe 6s ease-in-out infinite;
   }
-  @keyframes breathe {
-    0%,100% { transform: scale(1); }
-    50%     { transform: scale(1.06); }
-  }
-  .circle .orbit {
+  /* orbit rings — uneven radii, bigger planet gets wider gap */
+  .solar .orbit {
     position: absolute;
-    inset: -14px;
-    animation: spin 14s linear infinite;
-  }
-  .circle .orbit::before {
-    content: "";
-    position: absolute;
-    top: 50%; left: 0;
-    width: 8px; height: 8px;
-    margin-top: -4px;
+    top: 50%; left: 50%;
     border-radius: 50%;
+    border: 1px solid rgba(20,20,20,0.10);
+  }
+  .solar .o1 { width: 30%; height: 30%; margin: -15% 0 0 -15%; animation: spin 8s linear infinite; }
+  .solar .o2 { width: 43%; height: 43%; margin: -21.5% 0 0 -21.5%; animation: spin 14s linear infinite; }
+  .solar .o3 { width: 56%; height: 56%; margin: -28% 0 0 -28%; animation: spin 22s linear infinite; }
+  .solar .o4 { width: 70%; height: 70%; margin: -35% 0 0 -35%; animation: spin 32s linear infinite; }
+  .solar .o5 { width: 83%; height: 83%; margin: -41.5% 0 0 -41.5%; animation: spin 44s linear infinite; }
+  .solar .o6 { width: 96%; height: 96%; margin: -48% 0 0 -48%; animation: spin 58s linear infinite; }
+  /* planets — solid black circles, growing inner to outer */
+  .solar .planet {
+    position: absolute;
+    top: 0; left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
     background: var(--ink);
   }
+  .solar .o1 .planet,
+  .solar .o2 .planet,
+  .solar .o3 .planet,
+  .solar .o4 .planet,
+  .solar .o5 .planet,
+  .solar .o6 .planet { width: 6.5%; height: 6.5%; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* description + meta row */
@@ -683,7 +703,17 @@
       </div>
       <div class="hero-cell">
         <span class="tag"><b>&#9679;</b> 07 &mdash; Members</span>
-        <div class="circle"><span class="orbit"></span></div>
+        <div class="circle">
+          <div class="solar">
+            <span class="sun"></span>
+            <span class="orbit o1"><span class="planet"></span></span>
+            <span class="orbit o2"><span class="planet"></span></span>
+            <span class="orbit o3"><span class="planet"></span></span>
+            <span class="orbit o4"><span class="planet"></span></span>
+            <span class="orbit o5"><span class="planet"></span></span>
+            <span class="orbit o6"><span class="planet"></span></span>
+          </div>
+        </div>
       </div>
     </div>
 
